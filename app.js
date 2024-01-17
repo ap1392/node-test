@@ -1,8 +1,13 @@
-const _ = require("lodash");
+const EventEmitter = require("events");
 
-const items = [1, [2, [3, [4]]]];
-const newItems = _.flattenDeep(items);
-console.log(newItems);
-console.log(
-  "We need a tackle at 6, but Brock Bowers Malik Nabers or Rome Odunze would work too"
-);
+const customEmitter = new EventEmitter();
+
+customEmitter.on("response", (name, id) => {
+  console.log(`name: ${name} id: ${id}`);
+});
+
+customEmitter.on("response", () => {
+  console.log(`ples let me get a co-op`);
+});
+
+customEmitter.emit("response", "john", 34);
